@@ -1,0 +1,195 @@
+/*
+Theme Name: Thème pour le site de AMC
+Theme URI: http://www.afriquemanagementconseil.com/
+Description: Thème développé exlusivement pour le site de Afrique Management Conseil
+Version: 1.0
+
+License: GPLv2
+*/
+/* Main CSS style file
+*/
+/*
+* Font family import
+*/
+@font-face {
+    font-family: 'Tamil Sangam MN';
+    url('/assets/fonts/WebTamil_normal.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}@font-face {
+
+
+}
+
+*{
+    box-sizing: border-box;
+}
+body {
+    font-family:"Tamil Sangam MN";
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+nav {
+    background-color: transparent;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    height: 50px;
+    padding-top: 10px;
+}
+nav ul li {
+    line-height:30px;
+}
+nav ul li:hover, nav ul li:focus {
+    background: transparent;
+    border-bottom:1px solid #14669B;
+}
+nav ul a {
+    color:#1b1818;
+    padding: 0 10px;
+    text-transform: uppercase;
+    font-size:.81rem;
+}
+nav ul a:hover, nav ul a:focus {
+    background: transparent;
+}
+nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
+    line-height:30px;
+}
+.brand-logo {
+    text-decoration:none;
+    line-height:30px;
+    margin-left:.8em;
+}
+.brand-logo > img {
+    width:270px;
+    height:auto;
+}
+/************ Customize Bxslider ***********/
+.bx-viewport{
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+    min-height:80px !important;
+    height:auto !important;
+}
+/************ / Customize Bxslider ***********/
+.news-title {
+    margin:1em auto;
+    font-size: 2rem;
+}
+.news-title > a{
+     color: #14669B;
+     text-transform: uppercase;
+     font-weight:bold;
+     border-bottom:1px solid #F17A21;
+ }
+.dn-title {
+    margin:1em auto;
+    margin-top:0;
+    font-size: 2rem;
+}
+.dn-title > a{
+    color: #FFF;
+    text-transform: uppercase;
+    font-weight:bold;
+    border-bottom:1px solid #14669B;
+}
+.news-description {
+    padding:10px 30px;
+}
+.news-more {
+    text-decoration: none;
+    color: #14669B;
+}
+.news-more:focus, .news-more:hover {
+    text-decoration: none;
+    color: #14669B;
+    opacity:.8;
+}
+.in__content > div {
+    width:45%;
+    float: left;
+    margin:1% 2% 0;
+}
+.in__content > div > ul > li {
+    display: block;
+}
+.in__content > div > ul.col-left > li::after, .in__content > div > ul.col-right > li::after{
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    margin-top: -45px;
+    border-radius: 50%;
+    /* color: #F17A21; */
+    background: #F17A21;
+}
+.in__content > div > ul > li > a {
+    color: #FFF;
+    display: block;
+    text-decoration: none;
+    margin:1.2em auto;
+    font-size:1.3rem;
+}
+.in__content > div > ul.col-left > li > a{
+    margin-right:2em;
+}
+.in__content > div > ul.col-right > li > a{
+    margin-left:2em;
+}
+.card-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.card-header > img {
+    width:50px;
+    height:auto;
+    display: inline-block;
+}
+.card-header > h3 {
+    font-size:1.2rem;
+    font-weight:600;
+    color:#F17A21;
+    display: inline-block;
+    text-transform: uppercase;
+    margin-left:.8em;
+}
+
+@media screen and (max-width: 690px) {
+    .in__content > div {
+        width:96%;
+        margin:0 2%;
+        float: none;
+        text-align: left;
+    }
+    .in__content > div > ul.col-left > li::before, .in__content > div > ul.col-right > li::after{
+        content: '';
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        margin-top: -45px;
+        border-radius: 50%;
+        /* color: #F17A21; */
+        background: #F17A21;
+    }
+    .in__content > div > ul.col-left > li::before {
+        margin-top: 0px;
+    }
+    .in__content > div > ul.col-left > li::after{
+        content: '';
+        position: relative;
+        width: 0;
+        height: 0px;
+    }
+    .in__content > div > ul.col-left > li > a{
+        margin-right:0em;
+        margin-left:2em;
+    }
+}
