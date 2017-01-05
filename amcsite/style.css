@@ -13,7 +13,7 @@ License: GPLv2
 */
 @font-face {
     font-family: 'Tamil Sangam MN';
-    url('/assets/fonts/WebTamil_normal.ttf') format('truetype');
+url('/assets/fonts/WebTamil_normal.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }@font-face {
@@ -84,11 +84,11 @@ nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
     font-size: 2rem;
 }
 .news-title > a{
-     color: #14669B;
-     text-transform: uppercase;
-     font-weight:bold;
-     border-bottom:1px solid #F17A21;
- }
+    color: #14669B;
+    text-transform: uppercase;
+    font-weight:bold;
+    border-bottom:1px solid #F17A21;
+}
 .dn-title {
     margin:1em auto;
     margin-top:0;
@@ -161,7 +161,9 @@ nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
     text-transform: uppercase;
     margin-left:.8em;
 }
-
+.slider {
+    height:150px;
+}
 @media screen and (max-width: 690px) {
     .in__content > div {
         width:96%;
