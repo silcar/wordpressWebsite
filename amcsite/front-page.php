@@ -12,9 +12,9 @@ $args = array(
 );
 $actualite = new WP_Query( $args );
 ?>
-   <div class="main-content">
-       <img class="responsive-img" src="<?= get_template_directory_uri().'/assets/img/header_img.jpg' ;?>" alt="Header Image">
-   </div>
+<div class="main-content">
+    <img class="responsive-img" src="<?= get_template_directory_uri().'/assets/img/header_img.jpg' ;?>" alt="Header Image">
+</div>
 <div class="col s12 news">
     <h1 class="center-align news-title"><a href="#">Actualites</a></h1>
     <div class="bxslider">
@@ -52,8 +52,8 @@ $actualite = new WP_Query( $args );
         );
         $t_expertise = new WP_Query( $args );
 
-$get_experts = wp_count_posts('expertise');
-$count_expert = $get_experts->publish;
+        $get_experts = wp_count_posts('expertise');
+        $count_expert = $get_experts->publish;
         $j = intval($count_expert);
         $i = 1;?><?php
         while ( $t_expertise->have_posts() ) : $t_expertise->the_post();
@@ -62,7 +62,7 @@ $count_expert = $get_experts->publish;
             }
             ?>
             <li><a href=""><?= the_title(); ?></a></li>
-        <?php
+            <?php
             if ($i == $j/2){
                 echo "</ul>
                 </div>
@@ -82,9 +82,9 @@ $count_expert = $get_experts->publish;
     </div>
     <div class="clearfix"></div>
 </div>
-    <div class="parallax-container">
-        <div class="parallax"><img src="<?= get_template_directory_uri().'/assets/img/img_content.jpg' ;?>" style="opacity: .8;"></div>
-    </div>
+<div class="parallax-container">
+    <div class="parallax"><img src="<?= get_template_directory_uri().'/assets/img/img_content.jpg' ;?>" style="opacity: .8;"></div>
+</div>
 <div class="section wow bounceInUp" style="background-color: #F17A21;">
     <div class="row" style="margin-bottom:0px">
         <h1 class="center-align dn-title"><a href="#">Domaines d'expertise</a></h1>
@@ -107,14 +107,14 @@ $count_expert = $get_experts->publish;
                 ?>
                 <div class="col s12 m6 l4" style="padding:15px">
                     <div class="white wow fadeIn" data-wow-delay="1s" style="padding:15px">
-                       <div class="card-header valign-wrapper center-align"><img src="<?= $thumb_url ?>" alt=""> <?php the_title( '<h3>', '</h3>' ) ?></div>
+                        <div class="card-header valign-wrapper center-align"><img src="<?= $thumb_url ?>" alt=""> <?php the_title( '<h3>', '</h3>' ) ?></div>
                         <div class="card-content"><?php the_excerpt();?></div>
                     </div>
                 </div>
                 <?php
             endwhile;
             wp_reset_postdata(); ?>
-            </div>
+        </div>
     </div>
 </div>
 <div class="row">
@@ -122,6 +122,15 @@ $count_expert = $get_experts->publish;
 </div>
 <div class="row white">
     <h1 class="center-align dn-title"><a href="#" style="color: #F17A21;">References</a></h1>
+    <div class="slider valign-wrapper">
+        <div class="slide"><img src="<?= get_template_directory_uri() ?>/assets/img/logos/eurogerm_logo.png" alt=""></div>
+        <div class="slide"><img src="<?= get_template_directory_uri() ?>/assets/img/logos/gainde2000_logo.png" alt=""></div>
+        <div class="slide"><img src="<?= get_template_directory_uri() ?>/assets/img/logos/senegalaiseauto_logo.png" alt=""></div>
+        <div class="slide"><img src="<?= get_template_directory_uri() ?>/assets/img/logos/lcs_logo.png" alt=""></div>
+        <div class="slide"><img src="<?= get_template_directory_uri() ?>/assets/img/logos/matforce_logo.png" alt=""></div>
+        <div class="slide"><img src="<?= get_template_directory_uri() ?>/assets/img/logos/total_logo.jpg" alt=""></div>
+        <div class="slide"><img src="<?= get_template_directory_uri() ?>/assets/img/logos/sedima_logo.png" alt=""></div>
+    </div>
 
 </div>
 <?php get_footer(); ?>
