@@ -1,8 +1,6 @@
 <?php get_header(); ?>
 
 <div class="row main-domain">
-
-
         <?php while (have_posts()) : the_post();
                 $thumb_id = get_post_thumbnail_id();
         $cover = get_post_meta(get_the_ID(), 'wp_custom_attachment', true);
