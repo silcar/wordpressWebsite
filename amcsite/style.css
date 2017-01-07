@@ -42,11 +42,17 @@ nav {
     height: 50px;
     padding-top: 10px;
 }
+nav ul#menu-menu_principal {
+    margin-right:1em;
+}
 nav ul li {
     line-height:30px;
 }
 nav ul li:hover, nav ul li:focus {
     background: transparent;
+    border-bottom:1px solid #14669B;
+}
+nav ul li.current-menu-item{
     border-bottom:1px solid #14669B;
 }
 nav ul a {
@@ -198,11 +204,11 @@ ul.footer-menu > li > a {
     color: #e0e4eb;
     text-transform: uppercase;
     text-decoration: none;
-    -webkit-transition: color .4s;
-    -moz-transition: color .4s;
-    -ms-transition: color .4s;
-    -o-transition: color .4s;
-    transition: color .4s;
+    -webkit-transition: color .3s;
+    -moz-transition: color .3s;
+    -ms-transition: color .3s;
+    -o-transition: color .3s;
+    transition: color .3s;
 }
 ul.footer-menu > li > a:hover, ul.footer-menu > li > a:focus {
     color: #F17A21;
@@ -224,6 +230,34 @@ ul.footer-contact > li > span {
 ul.footer-contact > li > a{
     color: #F1F1F1;
 }
+/***** Domaine single page style ****/
+
+.domain-title {
+    line-height: 2rem;
+    margin: 1rem 0 1.68rem 0;
+}
+.domain-content{
+    font-family:"Tamil Sangam MN";
+    text-align: justify;
+}
+.domain-title > span {
+    color: #14669B;
+    font-size:2rem;
+    border-bottom:1px solid #F17A21;
+    text-transform: uppercase;
+}
+.domain-content ul li{
+    list-style-type: none;
+}
+.domain-content ul li:before{
+    content: "";
+    width: 8px;
+    height:8px;
+    display: inline-block;
+    background: #F17A21;
+    margin-right:1em
+}
+/***** Media queries *****/
 @media screen and (max-width: 690px) {
     .in__content > div {
         width:96%;
