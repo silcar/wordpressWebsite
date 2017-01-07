@@ -98,7 +98,17 @@ function theme_scripts(){
     wp_enqueue_script( 'default-script', get_template_directory_uri() . '/assets/js/default.js', array('jquery'), '', true );
 }
 add_action('wp_enqueue_scripts', 'theme_scripts');
+function add_admin_scripts( $hook ) {
 
+    global $post;
+
+    if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
+        if ( 'domain' === $post->post_type  || 'expertise' === $post->post_type) {
+            wp_enqueue_script(  'my-admin-script', get_template_directory_uri().'/assets/js/admin-script.js' );
+        }
+    }
+}
+add_action( 'admin_enqueue_scripts', 'add_admin_scripts', 10, 1 );
 // Theme setup
 function theme_settings(){
     /**
