@@ -79,14 +79,17 @@ function wp_custom_attachment($post) {
     wp_nonce_field(plugin_basename(__FILE__), 'wp_custom_attachment_nonce');
 
     $resources = get_post_meta( $post->ID, 'wp_custom_attachment', true );
-
+    $expStr = explode("/uploads/", $resources['url']);
+    $uploads = wp_upload_dir();
+    $upload_path = $uploads['baseurl'];
+    $resources_url = $upload_path . '/' . $expStr[1];
     $html = '<p class="description">';
     $html .= 'Télécharger image de cover';
     $html .= '</p>';
     $html .= '<input type="file" id="wp_custom_attachment" name="wp_custom_attachment" accept="image/*" value="'. $resources['url'] .'" size="25" />';
     if($resources){
         $html .= '<p>';
-        $html .= '<img id="cover-img" src="'. $resources['url'] .'" style="width:245px; height:auto;">';
+        $html .= '<img id="cover-img" src="'. $resources_url .'" style="width:245px; height:auto;">';
         $html .= '</p>';
         $html .= '<p>';
         $html .= '<a href="#" id="remove-cover-img" style="cursor:pointer; text-decoration: underline">Supprimer l\'image de couverture</a>';
