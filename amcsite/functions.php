@@ -18,7 +18,7 @@ remove_action('wp_head', 'wp_generator');
  * Change Logo, Url and Title of login page
  */
 function custom_login_logo() {
-  //  echo '<style type="text/css">h1 a { background: url('.get_bloginfo('template_directory').'/assets/img/3W_logo.png) center no-repeat !important; }</style>';
+    echo '<style type="text/css">h1 a { background: url('.get_bloginfo('template_directory').'/assets/img/amc-login.png) center no-repeat !important; }</style>';
 }
 
 function change_wp_login_url() {
@@ -71,11 +71,11 @@ add_filter( 'excerpt_length', 'wpdocs_custom_excerpt_length', 999 );
  * Enqueue styles and scripts
  */
 function theme_styles(){
-wp_enqueue_style ('bxslider_css', get_template_directory_uri() . '/assets/js/bxslider/jquery.bxslider.css');
-wp_enqueue_style ('materialize_ccs', get_template_directory_uri() . '/assets/css/materialize.min.css');
-   wp_enqueue_style ('font-awesome', get_template_directory_uri() . '/assets/css/font-awesome/css/font-awesome.min.css');
-   wp_enqueue_style ('animate', get_template_directory_uri() . '/assets/css/animate.css');
-   wp_enqueue_style ('main_style', get_template_directory_uri() . '/style.css?v=2.514');
+    wp_enqueue_style ('bxslider_css', get_template_directory_uri() . '/assets/js/bxslider/jquery.bxslider.css');
+    wp_enqueue_style ('materialize_ccs', get_template_directory_uri() . '/assets/css/materialize.min.css');
+    wp_enqueue_style ('font-awesome', get_template_directory_uri() . '/assets/css/font-awesome/css/font-awesome.min.css');
+    wp_enqueue_style ('animate', get_template_directory_uri() . '/assets/css/animate.css');
+    wp_enqueue_style ('main_style', get_template_directory_uri() . '/style.css?v=2.514');
 
 }
 add_action('wp_enqueue_scripts', 'theme_styles');
@@ -95,7 +95,7 @@ function theme_scripts(){
     wp_enqueue_script('jquery_easing', get_template_directory_uri() . '/assets/js/jquery.easing.1.3.js', array('jquery'), '', true);
     wp_enqueue_script('bxslider', get_template_directory_uri() . '/assets/js/bxslider/jquery.bxslider.min.js', array('jquery'), '', true);
     wp_enqueue_script('wow', get_template_directory_uri() . '/assets/js/wow.min.js', array('jquery'), '', true);
-    wp_enqueue_script( 'default-script', get_template_directory_uri() . '/assets/js/default.js?v=2.111', array('jquery'), '', true );
+    wp_enqueue_script( 'default-script', get_template_directory_uri() . '/assets/js/default.js?v=2.114', array('jquery'), '', true );
 }
 add_action('wp_enqueue_scripts', 'theme_scripts');
 function add_admin_scripts( $hook ) {
