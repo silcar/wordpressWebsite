@@ -32,32 +32,20 @@
         <nav>
             <div class="nav-wrapper">
                 <a href="#" class="brand-logo"><img src="<?= get_template_directory_uri().'/assets/img/logo-amc.png' ;?>" alt="Logo AMC"></a>
-                <a href="#" data-activates="mobile-demo" class="button-collapse" style="color: #F17A21;"><i class="material-icons">menu</i></a>
-                <?php
-                $args = [
-                    "menu" => 'menu-header',
-                    'container' => false,
-                    'container_class' => '',
-                    'container_id' => '',
-                    'menu_class' => 'right hide-on-med-and-down'
-                ];
-
-                wp_nav_menu ( $args );
-
-                ;?>
-                <?php
-                $args = [
-                    "menu"              => 'menu-header',
-                    'container'         => false,
-                    'container_class'   => '',
-                    'container_id'      => '',
-                    'menu_class'        => 'left side-nav',
-                    'menu_id'           =>  'mobile-demo'
-                ];
-
-                wp_nav_menu ( $args );
-
-                ;?>
+                <a href="#" data-activates="mobile-demo" class="button-collapse" style="color: #F17A21;"><i class="material-icons">MENU</i></a>
+                <ul id="menu-menu_principal" class="right hide-on-med-and-down"><li id="menu-item-4" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4"><a href="<?= esc_url( home_url() ) ;?>#home">Accueil</a></li>
+                    <li id="menu-item-5" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5"><a href="#">Qui sommes nous ?</a></li>
+                    <li id="menu-item-6" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6"><a href="<?= esc_url( home_url() ) ;?>#type">Type d&rsquo;intervention</a></li>
+                    <li id="menu-item-7" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7"><a href="<?= esc_url( home_url() ) ;?>#domain">Domaines d&rsquo;expertise</a></li>
+                    <li id="menu-item-8" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-8"><a href="<?= esc_url( home_url() ) ;?>#reference">Nos clients</a></li>
+                    <li id="menu-item-9" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-9"><a href="https://bms.bluekango.com/amc/index.php" target="_blank">Espace abonné</a></li>
+                </ul>                <ul id="mobile-demo" class="left side-nav"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4"><a href="<?= esc_url( home_url() ) ;?>#home">Accueil</a></li>
+                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5"><a href="#">Qui sommes nous ?</a></li>
+                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6"><a href="<?= esc_url( home_url() ) ;?>#type">Type d&rsquo;intervention</a></li>
+                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7"><a href="<?= esc_url( home_url() ) ;?>#domain">Domaines d&rsquo;expertise</a></li>
+                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-8"><a href="<?= esc_url( home_url() ) ;?>#reference">Nos clients</a></li>
+                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-9"><a href="https://bms.bluekango.com/amc/index.php" target="_blank"">Espace abonné</a></li>
+                </ul>
             </div>
         </nav>
     </header>

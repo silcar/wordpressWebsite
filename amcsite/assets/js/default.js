@@ -1,4 +1,17 @@
 jQuery(document).ready(function($) {
+    $(document).ready(function(){
+        $('.scrollspy').scrollSpy();
+    });
+
+    $('ul#menu-menu_principal > li > a').bind('click', function(event) {
+        $('#menu-menu_principal > li').removeClass('current-menu-item');
+        $(this).parent().addClass('current-menu-item');
+        /*console.log('one');
+        $('html, body').stop().animate({
+            scrollTop: $($(this).attr('href')).offset().top-150,
+        }, 1500, 'easeInOutExpo');
+        event.preventDefault();*/
+    });
     new WOW().init();
     // parallax initialization
     $('.parallax').parallax();

@@ -17,7 +17,7 @@
                               <li><i class="fa fa-angle-right" aria-hidden="true"></i> <a href="">Types d'intervention</a></li>
                               <li><i class="fa fa-angle-right" aria-hidden="true"></i> <a href="">Domaines d'espertise</a></li>
                               <li><i class="fa fa-angle-right" aria-hidden="true"></i> <a href="">Nos clients</a></li>
-                              <li><i class="fa fa-angle-right" aria-hidden="true"></i> <a href="">Espace abonnes</a></li>
+                              <li><i class="fa fa-angle-right" aria-hidden="true"></i> <a href="https://bms.bluekango.com/amc/index.php" target="_blank">Espace abonnes</a></li>
                         </ul>
                   </div>
                   <div class="col s12 l4 center-left">
@@ -25,7 +25,7 @@
                               <h5>Contact</h5>
                               <li><i class="fa fa-home"></i> <span>Sicap Amitié 3 – N° 4435, BP 15708 <br>Dakar-Fann Sénégal</span></li>
                               <li><i class="fa fa-phone"></i> <span>+221 33 859 75 00</span></li>
-                              <li><i class="fa fa-envelope"></i> <a style="font-size: .87em;" href="mailto:administration@afriquemanagementconseil.com">administration@afriquemanagementconseil.com</a></li>
+                              <li><i class="fa fa-envelope"></i> <a style="font-size: .81em;" href="mailto:administration@afriquemanagementconseil.com">administration@afriquemanagementconseil.com</a></li>
                               <li><i class="fa fa-linkedin-square" aria-hidden="true"></i> <a href="https://www.linkedin.com/company/afrique-management-conseil" target="_blank">Afrique Management conseil</a></li>
                         </ul>
                   </div>

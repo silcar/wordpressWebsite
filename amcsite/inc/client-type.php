@@ -63,7 +63,6 @@ function add_client_phone_metabox(){
         'normal',
         'high'
     );
-
 }
 function add_client_email_metabox(){
 
@@ -71,13 +70,12 @@ function add_client_email_metabox(){
 
     add_meta_box(
         'client_email',
-        __( 'email du client', 'amc' ),
+        __( 'Adresse mail du client', 'amc' ),
         'client_email_metabox_loader',
         $screen,
         'normal',
         'high'
     );
-
 }
 function add_client_address_metabox(){
 
@@ -85,13 +83,12 @@ function add_client_address_metabox(){
 
     add_meta_box(
         'client_address',
-        __( 'adresse du client', 'amc' ),
+        __( 'Adresse du client', 'amc' ),
         'client_address_metabox_loader',
         $screen,
         'normal',
         'high'
     );
-
 }
 add_action( 'add_meta_boxes', 'add_client_phone_metabox');
 add_action( 'add_meta_boxes', 'add_client_email_metabox');
@@ -101,8 +98,7 @@ function client_phone_metabox_loader( $post ){
 
     wp_nonce_field( 'client_phone_metabox_loader', 'client_phone_metabox_loader_nonce' );
 
-    $client_phone = get_post_meta ( $post -> ID, '_client_phone', true ) ;
-
+    $client_phone = get_post_meta ( $post -> ID, 'client_phone', true ) ;
     echo '<label for="input_client_phone"><br/>'.
         _e( "Numéro de téléphone du client:", 'amc' )
         .'</label> '.
@@ -113,35 +109,33 @@ function client_email_metabox_loader( $post ){
 
     wp_nonce_field( 'client_email_metabox_loader', 'client_email_metabox_loader_nonce' );
 
-    $client_email = get_post_meta ( $post -> ID, '_client_email', true ) ;
-
+    $client_email = get_post_meta ( $post -> ID, 'client_email', true ) ;
     echo '<label for="input_client_email"><br/>'.
-        _e( "Numéro de téléphone du client:", 'amc' )
+        _e( "Saisir l'adresse email du client:", 'amc' )
         .'</label> '.
-        '<input type="email" id="input_client_email" name="client_email" value="' . esc_attr( $client_email ) . '" size="50" />';
+        '<input type="text" id="input_client_email" name="client_email" value="' . esc_attr( $client_email ) . '" size="25" />';
 
 }
 function client_address_metabox_loader( $post ){
 
     wp_nonce_field( 'client_address_metabox_loader', 'client_address_metabox_loader_nonce' );
 
-    $client_address = get_post_meta ( $post -> ID, '_client_address', true ) ;
-
+    $client_address = get_post_meta ( $post -> ID, 'client_address', true ) ;
     echo '<label for="input_client_address"><br/>'.
-        _e( "Adresse du client:", 'amc' )
+        _e( "Saisir l'adresse du client:", 'amc' )
         .'</label> '.
-        '<textarea id="input_client_address" name="client_address" value="' . esc_attr( $client_address ) . '"></textarea>';
+        '<textarea id="input_client_address" name="client_address" cols="50"  rows="5">' . esc_attr( $client_address ) . '</textarea>';
 
 }
 //Function managing the client custom metabox field saving process to the wordpress database:
 function client_phone_metabox_data_saver( $post_id ){
 
     // Check if our nonce is set.
-    if ( ! isset( $_POST['client_phone_metabox_nonce'] ) ):
+    if ( ! isset( $_POST['client_phone_metabox_loader_nonce'] ) ):
         return $post_id;
     endif;
 
-    $nonce = $_POST['client_phone_metabox_nonce'];
+    $nonce = $_POST['client_phone_metabox_loader_nonce'];
 
     // Verify that the nonce is valid.
     if ( ! wp_verify_nonce( $nonce, 'client_phone_metabox_loader' ) ):
@@ -175,17 +169,17 @@ function client_phone_metabox_data_saver( $post_id ){
     $mydata = sanitize_text_field( $_POST['client_phone'] );
 
     // Update the meta field in the database.
-    update_post_meta( $post_id, '_client_phone', $mydata );
+    update_post_meta( $post_id, 'client_phone', $mydata );
 
 }
 function client_email_metabox_data_saver( $post_id ){
 
     // Check if our nonce is set.
-    if ( ! isset( $_POST['client_email_metabox_nonce'] ) ):
+    if ( ! isset( $_POST['client_email_metabox_loader_nonce'] ) ):
         return $post_id;
     endif;
 
-    $nonce = $_POST['client_email_metabox_nonce'];
+    $nonce = $_POST['client_email_metabox_loader_nonce'];
 
     // Verify that the nonce is valid.
     if ( ! wp_verify_nonce( $nonce, 'client_email_metabox_loader' ) ):
@@ -219,17 +213,17 @@ function client_email_metabox_data_saver( $post_id ){
     $mydata = sanitize_email( $_POST['client_email'] );
 
     // Update the meta field in the database.
-    update_post_meta( $post_id, '_client_email', $mydata );
+    update_post_meta( $post_id, 'client_email', $mydata );
 
 }
 function client_address_metabox_data_saver( $post_id ){
 
     // Check if our nonce is set.
-    if ( ! isset( $_POST['client_address_metabox_nonce'] ) ):
+    if ( ! isset( $_POST['client_address_metabox_loader_nonce'] ) ):
         return $post_id;
     endif;
 
-    $nonce = $_POST['client_address_metabox_nonce'];
+    $nonce = $_POST['client_address_metabox_loader_nonce'];
 
     // Verify that the nonce is valid.
     if ( ! wp_verify_nonce( $nonce, 'client_address_metabox_loader' ) ):
@@ -263,7 +257,7 @@ function client_address_metabox_data_saver( $post_id ){
     $mydata = sanitize_text_field( $_POST['client_address'] );
 
     // Update the meta field in the database.
-    update_post_meta( $post_id, '_client_address', $mydata );
+    update_post_meta( $post_id, 'client_address', $mydata );
 
 }
 add_action( 'save_post', 'client_phone_metabox_data_saver' );

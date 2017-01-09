@@ -73,7 +73,21 @@ function add_custom_meta_boxes() {
     );
 
 } // end add_custom_meta_boxes
+function add_expertise_intervention_metabox(){
+
+    $screen = 'domain';
+
+    add_meta_box(
+        'expertise_intervention',
+        __( 'Types d\'intervention', 'amc' ),
+        'expertise_intervention_metabox_loader',
+        $screen,
+        'normal',
+        'high'
+    );
+}
 add_action('add_meta_boxes', 'add_custom_meta_boxes');
+add_action('add_meta_boxes', 'add_expertise_intervention_metabox');
 function wp_custom_attachment($post) {
 
     wp_nonce_field(plugin_basename(__FILE__), 'wp_custom_attachment_nonce');
@@ -98,6 +112,42 @@ function wp_custom_attachment($post) {
     echo $html;
 
 } // end wp_custom_attachment
+
+//Functions managing the client customs' metaboxes display in admin section:
+function expertise_intervention_metabox_loader( $post ){
+
+    wp_nonce_field( 'expertise_intervention_metabox_loader', 'expertise_intervention_metabox_loader_nonce' );
+    $args = array(
+        'post_type' => 'expertise',
+        'posts_per_page' => 200,
+        'orderby' => array(
+            'title' => 'ASC'
+        )
+    );
+
+    $expertise_intervention = get_post_meta ( $post -> ID, 'expertise_intervention', true ) ;
+    $interventions = new WP_Query( $args );
+    echo '<h5 style="font-size:1.3rem">Choisir les types d\'intervention pour ce domaine d\'expertise</h5>';
+
+    if ( $interventions->have_posts() ) {
+        echo '<div class="row">';
+        while ($interventions->have_posts()) {
+            $interventions->the_post();
+            $text='';
+            $c_id = get_the_ID();
+            if(in_array($c_id, $expertise_intervention)){
+                $text = 'checked="checked"';
+            }
+            echo '<div class="col s6">
+      <input class="filled-in" value="'. get_the_ID() .'" name="expertise_intervention[]" type="checkbox" id="typeIn'. get_the_ID() .'" '. $text .' />
+      <label for="typeIn'. get_the_ID() .'">';
+            the_title() ;
+            echo '</label>
+    </div>';
+        }
+        echo '</div>';
+    }// end if
+}
 function save_custom_meta_data($id) {
 
     /* --- security verification --- */
@@ -150,8 +200,53 @@ function save_custom_meta_data($id) {
     } // end if
 
 } // end save_custom_meta_data
-add_action('save_post', 'save_custom_meta_data');
 
+function expertise_intervention_metabox_data_saver( $post_id ){
+
+    // Check if our nonce is set.
+    if ( ! isset( $_POST['expertise_intervention_metabox_loader_nonce'] ) ):
+        return $post_id;
+    endif;
+
+    $nonce = $_POST['expertise_intervention_metabox_loader_nonce'];
+
+    // Verify that the nonce is valid.
+    if ( ! wp_verify_nonce( $nonce, 'expertise_intervention_metabox_loader' ) ):
+        return $post_id;
+    endif;
+
+    // If this is an autosave, our form has not been submitted, so we don't want to do anything.
+    if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ):
+        return $post_id;
+    endif;
+
+    // Check the user's permissions.
+    if ( 'client' == $_POST['expertise_intervention'] ):
+
+        if ( ! current_user_can( 'edit_page', $post_id ) ):
+            return $post_id;
+
+        else :
+
+            if ( ! current_user_can( 'edit_post', $post_id ) ):
+                return $post_id;
+            endif;
+
+        endif;
+
+    endif;
+
+    /* OK, its safe for us to save the data now. */
+
+    // Sanitize user input.
+    $mydata = ( $_POST['expertise_intervention'] );
+
+    // Update the meta field in the database.
+    update_post_meta( $post_id, 'expertise_intervention', $mydata );
+
+}
+add_action( 'save_post', 'expertise_intervention_metabox_data_saver' );
+add_action('save_post', 'save_custom_meta_data');
 function update_edit_form(){
     echo ' enctype="multipart/form-data"';
 }
