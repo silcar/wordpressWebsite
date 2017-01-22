@@ -1,44 +1,44 @@
 <?php
 
 // Register Custom Post Type
-function domain() {
+function expertise() {
 
     $labels = array(
-        'name'                  => _x( 'Domaines', 'Post Type General Name', 'domain' ),
-        'singular_name'         => _x( 'Domaines', 'Post Type Singular Name', 'domain' ),
-        'menu_name'             => __( 'Domaines d\'expertise', 'domain' ),
-        'name_admin_bar'        => __( 'Les Domaines d\'expertise', 'domain' ),
-        'archives'              => __( 'Archives Domaines', 'domain' ),
-        'parent_item_colon'     => __( 'Parent Item:', 'domain' ),
-        'all_items'             => __( 'Tous les domaines d\' expertise', 'domain' ),
-        'add_new_item'          => __( 'Ajouter un nouveau domaine', 'domain' ),
-        'add_new'               => __( 'Ajouter', 'domain' ),
-        'new_item'              => __( 'Nouvelle', 'domain' ),
-        'edit_item'             => __( 'Editer domaine', 'domain' ),
-        'update_item'           => __( 'Modifier domaine', 'domain' ),
-        'view_item'             => __( 'Voir', 'domain' ),
-        'search_items'          => __( 'Rechercher un domain', 'domain' ),
-        'not_found'             => __( 'Non trouvé', 'domain' ),
-        'not_found_in_trash'    => __( 'Introuvable dans corbeille', 'domain' ),
-        'featured_image'        => __( 'Icône', 'domain' ),
-        'set_featured_image'    => __( 'Inserer une icône', 'domain' ),
-        'remove_featured_image' => __( 'Supprimer icône', 'domain' ),
-        'use_featured_image'    => __( 'Utiliser icône', 'domain' ),
-        'insert_into_item'      => __( 'Insert into item', 'domain' ),
-        'uploaded_to_this_item' => __( 'Uploaded to this item', 'domain' ),
-        'items_list'            => __( 'Liste des domaine', 'domain' ),
-        'items_list_navigation' => __( 'Domaine navigation', 'domain' ),
-        'filter_items_list'     => __( 'Filtrer la liste des domaines d\'expertises', 'domain' ),
+        'name'                  => _x( 'Domaines', 'Post Type General Name', 'expertise' ),
+        'singular_name'         => _x( 'Domaine', 'Post Type Singular Name', 'expertise' ),
+        'menu_name'             => __( 'Domaines d\'expertise', 'expertise' ),
+        'name_admin_bar'        => __( 'Les Domaines d\'expertise', 'expertise' ),
+        'archives'              => __( 'Archives Domaines', 'expertise' ),
+        'parent_item_colon'     => __( 'Parent Item:', 'expertise' ),
+        'all_items'             => __( 'Tous les domaines d\' expertise', 'expertise' ),
+        'add_new_item'          => __( 'Ajouter un nouveau domaine', 'expertise' ),
+        'add_new'               => __( 'Ajouter', 'expertise' ),
+        'new_item'              => __( 'Nouvelle', 'expertise' ),
+        'edit_item'             => __( 'Editer domaine', 'expertise' ),
+        'update_item'           => __( 'Modifier domaine', 'expertise' ),
+        'view_item'             => __( 'Voir', 'expertise' ),
+        'search_items'          => __( 'Rechercher un expertise', 'expertise' ),
+        'not_found'             => __( 'Non trouvé', 'expertise' ),
+        'not_found_in_trash'    => __( 'Introuvable dans corbeille', 'expertise' ),
+        'featured_image'        => __( 'Icône', 'expertise' ),
+        'set_featured_image'    => __( 'Inserer une icône', 'expertise' ),
+        'remove_featured_image' => __( 'Supprimer icône', 'expertise' ),
+        'use_featured_image'    => __( 'Utiliser icône', 'expertise' ),
+        'insert_into_item'      => __( 'Insert into item', 'expertise' ),
+        'uploaded_to_this_item' => __( 'Uploaded to this item', 'expertise' ),
+        'items_list'            => __( 'Liste des domaine', 'expertise' ),
+        'items_list_navigation' => __( 'Domaine navigation', 'expertise' ),
+        'filter_items_list'     => __( 'Filtrer la liste des domaines d\'expertises', 'expertise' ),
     );
     $args = array(
-        'label'                 => __( 'Domaine', 'domain' ),
-        'description'           => __( 'Description domaine', 'domain' ),
+        'label'                 => __( 'Domaine', 'expertise' ),
+        'description'           => __( 'Description domaine', 'expertise' ),
         'labels'                => $labels,
         'public' => true,
         'show_ui' => true,
         'capability_type' => 'post',
         'hierarchical' => false,
-        'rewrite' => array('slug' => 'domain'),
+        'rewrite' => array('slug' => 'domaine-expertise'),
         'query_var' => true,
         'menu_icon' => 'dashicons-admin-multisite',
         'supports' => array(
@@ -47,10 +47,10 @@ function domain() {
             'excerpt',
             'thumbnail',)
     );
-    register_post_type( 'domain', $args );
+    register_post_type( 'expertise', $args );
 
 }
-add_action( 'init', 'domain', 0 );
+add_action( 'init', 'expertise', 0 );
 
 function add_custom_meta_boxes() {
 
@@ -59,7 +59,7 @@ function add_custom_meta_boxes() {
         'wp_custom_attachment',
         'Image de couverture',
         'wp_custom_attachment',
-        'domain',
+        'expertise',
         'side'
     );
 
@@ -68,39 +68,44 @@ function add_custom_meta_boxes() {
         'wp_custom_attachment',
         'Image de couverture',
         'wp_custom_attachment',
-        'expertise',
+        'intervention',
         'side'
     );
 
 } // end add_custom_meta_boxes
-function add_expertise_intervention_metabox(){
+function add_type_intervention_metabox(){
 
-    $screen = 'domain';
+    $screen = 'expertise';
 
     add_meta_box(
-        'expertise_intervention',
+        'type_intervention',
         __( 'Types d\'intervention', 'amc' ),
-        'expertise_intervention_metabox_loader',
+        'type_intervention_metabox_loader',
         $screen,
         'normal',
         'high'
     );
 }
 add_action('add_meta_boxes', 'add_custom_meta_boxes');
-add_action('add_meta_boxes', 'add_expertise_intervention_metabox');
+add_action('add_meta_boxes', 'add_type_intervention_metabox');
 function wp_custom_attachment($post) {
 
     wp_nonce_field(plugin_basename(__FILE__), 'wp_custom_attachment_nonce');
 
     $resources = get_post_meta( $post->ID, 'wp_custom_attachment', true );
-    $expStr = explode("/uploads/", $resources['url']);
-    $uploads = wp_upload_dir();
-    $upload_path = $uploads['baseurl'];
-    $resources_url = $upload_path . '/' . $expStr[1];
+    if($resources){
+
+        $expStr = explode("/uploads/", $resources['url']);
+        $uploads = wp_upload_dir();
+        $upload_path = $uploads['baseurl'];
+        $resources_url = $upload_path . '/' . $expStr[1];
+    }else{
+        $resources_url ='';
+    }
     $html = '<p class="description">';
     $html .= 'Télécharger image de cover';
     $html .= '</p>';
-    $html .= '<input type="file" id="wp_custom_attachment" name="wp_custom_attachment" accept="image/*" value="'. $resources['url'] .'" size="25" />';
+    $html .= '<input type="file" id="wp_custom_attachment" name="wp_custom_attachment" accept="image/*" value="'. $resources_url .'" size="25" />';
     if($resources){
         $html .= '<p>';
         $html .= '<img id="cover-img" src="'. $resources_url .'" style="width:245px; height:auto;">';
@@ -114,32 +119,37 @@ function wp_custom_attachment($post) {
 } // end wp_custom_attachment
 
 //Functions managing the client customs' metaboxes display in admin section:
-function expertise_intervention_metabox_loader( $post ){
+function type_intervention_metabox_loader( $post ){
 
-    wp_nonce_field( 'expertise_intervention_metabox_loader', 'expertise_intervention_metabox_loader_nonce' );
+    wp_nonce_field( 'type_intervention_metabox_loader', 'type_intervention_metabox_loader_nonce' );
     $args = array(
-        'post_type' => 'expertise',
+        'post_type' => 'intervention',
         'posts_per_page' => 200,
         'orderby' => array(
             'title' => 'ASC'
         )
     );
-
-    $expertise_intervention = get_post_meta ( $post -> ID, 'expertise_intervention', true ) ;
+    $expertise_intervention = get_post_meta ( $post -> ID, 'type_intervention', true ) ;
     $interventions = new WP_Query( $args );
     echo '<h5 style="font-size:1.3rem">Choisir les types d\'intervention pour ce domaine d\'expertise</h5>';
-
+    //var_dump($expertise_intervention);
     if ( $interventions->have_posts() ) {
         echo '<div class="row">';
         while ($interventions->have_posts()) {
             $interventions->the_post();
             $text='';
             $c_id = get_the_ID();
-            if(in_array($c_id, $expertise_intervention)){
-                $text = 'checked="checked"';
+            if (is_array($expertise_intervention)){
+                if(in_array($c_id, $expertise_intervention)){
+                    $text = 'checked="checked"';
+                }
+            }elseif (!is_array($expertise_intervention)){
+                if($c_id ==  $expertise_intervention){
+                    $text = 'checked="checked"';
+                }
             }
             echo '<div class="col s6">
-      <input class="filled-in" value="'. get_the_ID() .'" name="expertise_intervention[]" type="checkbox" id="typeIn'. get_the_ID() .'" '. $text .' />
+      <input  value="'. get_the_ID() .'" name="type_intervention[]" type="checkbox" id="typeIn'. get_the_ID() .'" '. $text .' />
       <label for="typeIn'. get_the_ID() .'">';
             the_title() ;
             echo '</label>
@@ -159,7 +169,7 @@ function save_custom_meta_data($id) {
         return $id;
     } // end if
 
-    if('domain' == $_POST['post_type']) {
+    if('expertise' == $_POST['post_type']) {
         if(!current_user_can('edit_page', $id)) {
             return $id;
         } // end if
@@ -201,17 +211,17 @@ function save_custom_meta_data($id) {
 
 } // end save_custom_meta_data
 
-function expertise_intervention_metabox_data_saver( $post_id ){
+function type_intervention_metabox_data_saver( $post_id ){
 
     // Check if our nonce is set.
-    if ( ! isset( $_POST['expertise_intervention_metabox_loader_nonce'] ) ):
+    if ( ! isset( $_POST['type_intervention_metabox_loader_nonce'] ) ):
         return $post_id;
     endif;
 
-    $nonce = $_POST['expertise_intervention_metabox_loader_nonce'];
+    $nonce = $_POST['type_intervention_metabox_loader_nonce'];
 
     // Verify that the nonce is valid.
-    if ( ! wp_verify_nonce( $nonce, 'expertise_intervention_metabox_loader' ) ):
+    if ( ! wp_verify_nonce( $nonce, 'type_intervention_metabox_loader' ) ):
         return $post_id;
     endif;
 
@@ -221,7 +231,7 @@ function expertise_intervention_metabox_data_saver( $post_id ){
     endif;
 
     // Check the user's permissions.
-    if ( 'client' == $_POST['expertise_intervention'] ):
+    if ( 'expertise' == $_POST['type_intervention'] ):
 
         if ( ! current_user_can( 'edit_page', $post_id ) ):
             return $post_id;
@@ -239,13 +249,13 @@ function expertise_intervention_metabox_data_saver( $post_id ){
     /* OK, its safe for us to save the data now. */
 
     // Sanitize user input.
-    $mydata = ( $_POST['expertise_intervention'] );
+    $mydata = ( $_POST['type_intervention'] );
 
     // Update the meta field in the database.
-    update_post_meta( $post_id, 'expertise_intervention', $mydata );
+    update_post_meta( $post_id, 'type_intervention', $mydata );
 
 }
-add_action( 'save_post', 'expertise_intervention_metabox_data_saver' );
+add_action( 'save_post', 'type_intervention_metabox_data_saver' );
 add_action('save_post', 'save_custom_meta_data');
 function update_edit_form(){
     echo ' enctype="multipart/form-data"';

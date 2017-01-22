@@ -9,10 +9,10 @@ jQuery(document).ready(function($) {
         $('#menu-menu_principal > li').removeClass('current-menu-item');
         $(this).parent().addClass('current-menu-item');
         /*console.log('one');
-         $('html, body').stop().animate({
-         scrollTop: $($(this).attr('href')).offset().top-150,
-         }, 1500, 'easeInOutExpo');
-         event.preventDefault();*/
+        $('html, body').stop().animate({
+            scrollTop: $($(this).attr('href')).offset().top-150,
+        }, 1500, 'easeInOutExpo');
+        event.preventDefault();*/
     });
     new WOW().init();
     // parallax initialization

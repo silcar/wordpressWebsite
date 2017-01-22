@@ -64,11 +64,53 @@ function add_reference_client_metabox(){
         'high'
     );
 }
+function add_reference_intervention_metabox(){
+
+    $screen = 'reference';
+
+    add_meta_box(
+        'reference_intervention',
+        __( 'Type d\'intervention', 'amc' ),
+        'reference_intervention_metabox_loader',
+        $screen,
+        'normal',
+        'high'
+    );
+}
+function add_reference_expertise_metabox(){
+
+    $screen = 'reference';
+
+    add_meta_box(
+        'reference_expertise',
+        __( 'Domaine d\'expertise', 'amc' ),
+        'reference_expertise_metabox_loader',
+        $screen,
+        'normal',
+        'high'
+    );
+}
+function add_reference_date_metabox(){
+
+    $screen = 'reference';
+
+    add_meta_box(
+        'reference_date',
+        __( 'Date', 'amc' ),
+        'reference_date_metabox_loader',
+        $screen,
+        'normal',
+        'high'
+    );
+}
 add_action( 'add_meta_boxes', 'add_reference_client_metabox');
+add_action( 'add_meta_boxes', 'add_reference_intervention_metabox');
+add_action( 'add_meta_boxes', 'add_reference_expertise_metabox');
+add_action( 'add_meta_boxes', 'add_reference_date_metabox');
 //Functions managing the client customs' metaboxes display in admin section:
 function reference_client_metabox_loader( $post ){
 
-    wp_nonce_field( 'client_phone_metabox_loader', 'client_phone_metabox_loader_nonce' );
+    wp_nonce_field( 'reference_client_metabox_loader', 'reference_client_metabox_loader_nonce' );
     $args = array(
         'post_type' => 'client',
         'posts_per_page' => 200,
@@ -78,7 +120,7 @@ function reference_client_metabox_loader( $post ){
     );
 
     $reference_client = get_post_meta ( $post -> ID, 'reference_client', true ) ;
-    var_dump($reference_client);
+
     $clients = new WP_Query( $args );
     echo '<select name="reference_client" id="reference_client" >';
     echo '<option value="">Sélectionner un client</option>';
@@ -86,29 +128,108 @@ function reference_client_metabox_loader( $post ){
 
         while ($clients->have_posts()) {
             $clients->the_post();
+            $text='';
             $c_id = get_the_ID();
-
-            echo '<option value="'. get_the_ID() .'">';
-            the_title() ;
+            if($c_id == $reference_client) {
+                $text = "selected";
+            }
+            echo '<option value="'. get_the_ID() .'" '. $text .'>';
+            echo ucfirst(strtolower(get_the_title())) ;
             echo '</option>';
         }
     }// end if
     echo '<option value="">Créer un nouveau client</option>';
     echo '</select>';
-    var_dump($c_id);
+}
+function reference_intervention_metabox_loader( $post ){
+
+    wp_nonce_field( 'reference_intervention_metabox_loader', 'reference_intervention_metabox_loader_nonce' );
+    $args = array(
+        'post_type' => 'intervention',
+        'posts_per_page' => 200,
+        'orderby' => array(
+            'title' => 'ASC'
+        )
+    );
+
+    $reference_client = get_post_meta ( $post -> ID, 'reference_intervention', true ) ;
+    $clients = new WP_Query( $args );
+    echo '<select name="reference_intervention" id="reference_intervention" >';
+    echo '<option value="">Sélectionner un type d\'intervention</option>';
+    if ( $clients->have_posts() ) {
+
+        while ($clients->have_posts()) {
+            $clients->the_post();
+            $c_id = get_the_ID();
+            $text = '';
+            if($c_id == $reference_client) {
+                $text = "selected";
+            }
+            echo '<option value="'. get_the_ID() .'"' . $text .' >';
+            echo ucfirst(strtolower(get_the_title())) ;
+            echo '</option>';
+        }
+    }// end if
+    echo '<option value="">Créer un nouveau type d\'intervention</option>';
+    echo '</select>';
+}
+function reference_expertise_metabox_loader( $post ){
+
+    wp_nonce_field( 'reference_expertise_metabox_loader', 'reference_expertise_metabox_loader_nonce' );
+    $args = array(
+        'post_type' => 'expertise',
+        'posts_per_page' => 200,
+        'orderby' => array(
+            'title' => 'ASC'
+        )
+    );
+
+    $reference_client = get_post_meta ( $post -> ID, 'reference_expertise', true ) ;
+
+    $domaines = new WP_Query( $args );
+    echo '<select name="reference_expertise" id="reference_expertise" >';
+    echo '<option value="">Sélectionner un domaine d\'expertise</option>';
+    if ( $domaines->have_posts() ) {
+
+        while ($domaines->have_posts()) {
+            $domaines->the_post();
+            $c_id = get_the_ID();
+            $text = '';
+            if($c_id == $reference_client) {
+                $text = "selected";
+            }
+            echo '<option value="'. get_the_ID() .'"' . $text . '>';
+            echo ucfirst(strtolower(get_the_title())) ;
+            echo '</option>';
+        }
+    }// end if
+    echo '<option value="">Créer un nouveau domaine d\'expertise</option>';
+    echo '</select>';
+}
+function reference_date_metabox_loader( $post ){
+
+    wp_nonce_field( 'reference_date_metabox_loader', 'reference_date_metabox_loader_nonce' );
+
+
+    $reference_date = get_post_meta ( $post -> ID, 'reference_date', true ) ;
+    echo '<label for="reference_date"><br/>'.
+        _e( "Date:", 'amc' )
+        .'</label> '.
+        '<input type="date" class="datepicker" id="reference_date" name="reference_date" value="' . esc_attr( $reference_date ) . '" size="25" />';
+
 }
 //Function managing the client custom metabox field saving process to the wordpress database:
 function reference_client_metabox_data_saver( $post_id ){
 
     // Check if our nonce is set.
-    if ( ! isset( $_POST['client_phone_metabox_loader_nonce'] ) ):
+    if ( ! isset( $_POST['reference_client_metabox_loader_nonce'] ) ):
         return $post_id;
     endif;
 
-    $nonce = $_POST['client_phone_metabox_loader_nonce'];
+    $nonce = $_POST['reference_client_metabox_loader_nonce'];
 
     // Verify that the nonce is valid.
-    if ( ! wp_verify_nonce( $nonce, 'client_phone_metabox_loader' ) ):
+    if ( ! wp_verify_nonce( $nonce, 'reference_client_metabox_loader' ) ):
         return $post_id;
     endif;
 
@@ -118,7 +239,7 @@ function reference_client_metabox_data_saver( $post_id ){
     endif;
 
     // Check the user's permissions.
-    if ( 'client' == $_POST['post_type'] ):
+    if ( 'reference' == $_POST['post_type'] ):
 
         if ( ! current_user_can( 'edit_page', $post_id ) ):
             return $post_id;
@@ -136,10 +257,143 @@ function reference_client_metabox_data_saver( $post_id ){
     /* OK, its safe for us to save the data now. */
 
     // Sanitize user input.
-    $mydata = sanitize_text_field( $_POST['client_phone'] );
+    $mydata = sanitize_text_field( $_POST['reference_client'] );
 
     // Update the meta field in the database.
-    update_post_meta( $post_id, 'client_phone', $mydata );
+    update_post_meta( $post_id, 'reference_client', $mydata );
 
 }
+function reference_intervention_metabox_data_saver( $post_id ){
+
+    // Check if our nonce is set.
+    if ( ! isset( $_POST['reference_intervention_metabox_loader_nonce'] ) ):
+        return $post_id;
+    endif;
+
+    $nonce = $_POST['reference_intervention_metabox_loader_nonce'];
+
+    // Verify that the nonce is valid.
+    if ( ! wp_verify_nonce( $nonce, 'reference_intervention_metabox_loader' ) ):
+        return $post_id;
+    endif;
+
+    // If this is an autosave, our form has not been submitted, so we don't want to do anything.
+    if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ):
+        return $post_id;
+    endif;
+
+    // Check the user's permissions.
+    if ( 'reference' == $_POST['post_type'] ):
+
+        if ( ! current_user_can( 'edit_page', $post_id ) ):
+            return $post_id;
+
+        else :
+
+            if ( ! current_user_can( 'edit_post', $post_id ) ):
+                return $post_id;
+            endif;
+
+        endif;
+
+    endif;
+
+    /* OK, its safe for us to save the data now. */
+
+    // Sanitize user input.
+    $mydata = sanitize_text_field( $_POST['reference_intervention'] );
+
+    // Update the meta field in the database.
+    update_post_meta( $post_id, 'reference_intervention', $mydata );
+
+}
+function reference_expertise_metabox_data_saver( $post_id ){
+
+    // Check if our nonce is set.
+    if ( ! isset( $_POST['reference_expertise_metabox_loader_nonce'] ) ):
+        return $post_id;
+    endif;
+
+    $nonce = $_POST['reference_expertise_metabox_loader_nonce'];
+
+    // Verify that the nonce is valid.
+    if ( ! wp_verify_nonce( $nonce, 'reference_expertise_metabox_loader' ) ):
+        return $post_id;
+    endif;
+
+    // If this is an autosave, our form has not been submitted, so we don't want to do anything.
+    if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ):
+        return $post_id;
+    endif;
+
+    // Check the user's permissions.
+    if ( 'reference' == $_POST['post_type'] ):
+
+        if ( ! current_user_can( 'edit_page', $post_id ) ):
+            return $post_id;
+
+        else :
+
+            if ( ! current_user_can( 'edit_post', $post_id ) ):
+                return $post_id;
+            endif;
+
+        endif;
+
+    endif;
+
+    /* OK, its safe for us to save the data now. */
+
+    // Sanitize user input.
+    $mydata = sanitize_text_field( $_POST['reference_expertise'] );
+
+    // Update the meta field in the database.
+    update_post_meta( $post_id, 'reference_expertise', $mydata );
+
+}
+function reference_date_metabox_data_saver( $post_id ){
+
+    // Check if our nonce is set.
+    if ( ! isset( $_POST['reference_date_metabox_loader_nonce'] ) ):
+        return $post_id;
+    endif;
+
+    $nonce = $_POST['reference_date_metabox_loader_nonce'];
+
+    // Verify that the nonce is valid.
+    if ( ! wp_verify_nonce( $nonce, 'reference_date_metabox_loader' ) ):
+        return $post_id;
+    endif;
+
+    // If this is an autosave, our form has not been submitted, so we don't want to do anything.
+    if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ):
+        return $post_id;
+    endif;
+
+    // Check the user's permissions.
+    if ( 'reference' == $_POST['post_type'] ):
+
+        if ( ! current_user_can( 'edit_page', $post_id ) ):
+            return $post_id;
+
+        else :
+
+            if ( ! current_user_can( 'edit_post', $post_id ) ):
+                return $post_id;
+            endif;
+
+        endif;
+
+    endif;
+    /* OK, its safe for us to save the data now. */
+
+    // Sanitize user input.
+    $mydata = sanitize_text_field( $_POST['reference_date'] );
+
+    // Update the meta field in the database.
+    update_post_meta( $post_id, 'reference_date', $mydata );
+}
 add_action( 'save_post', 'reference_client_metabox_data_saver' );
+add_action( 'save_post', 'reference_intervention_metabox_data_saver' );
+add_action( 'save_post', 'reference_expertise_metabox_data_saver' );
+add_action( 'save_post', 'reference_date_metabox_data_saver' );

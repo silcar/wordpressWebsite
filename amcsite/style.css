@@ -11,21 +11,11 @@ License: GPLv2
 /*
 * Font family import
 */
-@font-face {
-    font-family: 'Tamil Sangam MN';
-    url('/assets/fonts/WebTamil_normal.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}@font-face {
-
-
-}
-
 *{
     box-sizing: border-box;
 }
 body {
-    font-family:"Tamil Sangam MN";
+    font-family: 'Open Sans', sans-serif;
     display: flex;
     min-height: 100vh;
     flex-direction: column;
@@ -47,19 +37,19 @@ nav {
 }
 nav ul#menu-menu_principal {
     margin-right:1em;
-    padding-top: 10px;
+    padding-top: 5px;
 }
 nav ul li {
     line-height:30px;
 }
-nav ul li:hover > a, nav ul li:focus > a {
+nav ul li:hover > a > span, nav ul li:focus > a > span {
     background: transparent;
     border-bottom:2px solid #225D89;
 }
 nav ul li:hover, nav ul li:focus {
     background: transparent;
 }
-nav ul li.current-menu-item > a{
+nav ul li.current-menu-item > a > span{
     border-bottom:2px solid #225D89;
 }
 nav ul a {
@@ -81,7 +71,7 @@ nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
     margin-left:.8em;
 }
 .brand-logo > img {
-    width:270px;
+    width:375px;
     height:auto;
 }
 /************ Customize Bxslider ***********/
@@ -94,24 +84,21 @@ nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
 }
 /************ / Customize Bxslider ***********/
 .news-title {
-    margin:1em auto;
-    font-size: 2rem;
+    margin:.5em auto;
+    font-size: 1.6rem;
 }
 .news-title > a{
      color: #225D89;
      text-transform: uppercase;
-     font-weight:bold;
      border-bottom:2px solid #F17A21;
  }
 .dn-title {
-    margin:1em auto;
-    margin-top:0;
-    font-size: 2rem;
+    margin:0 auto;
+    font-size: 1.6rem;
 }
 .dn-title > a{
     color: #FFF;
     text-transform: uppercase;
-    font-weight:bold;
     border-bottom:2px solid #225D89;
 }
 .news-description {
@@ -150,7 +137,7 @@ nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
     position: absolute;
     width: 12px;
     height: 12px;
-    margin-top: -45px;
+    margin-top: -35px;
     border-radius: 50%;
     /* color: #F17A21; */
     background: #F17A21;
@@ -159,8 +146,8 @@ nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
     color: #FFF;
     display: block;
     text-decoration: none;
-    margin:1.2em auto;
-    font-size:1.3rem;
+    margin:1em auto;
+    font-size:1.2rem;
 }
 .in__content > div > ul.col-left > li > a{
     margin-right:2em;
@@ -183,6 +170,15 @@ nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
      display: -ms-flexbox;
      display: flex;
      margin-bottom: 1.1em;
+ }
+ .box-link {
+
+     position:absolute;
+     display: block;
+     width: 100%;
+     height: 100%;
+     top:0;
+     left:0;
  }
 .card-header {
     display: flex;
@@ -223,7 +219,6 @@ ul.footer-menu {
 .about > h5, ul.footer-menu > h5, ul.footer-contact > h5{
     font-size: 1.3em;
     text-transform: uppercase;
-    font-weight:600;
     margin:1.5em auto;
     color: #e0e4eb;
 }
@@ -242,6 +237,7 @@ ul.footer-menu > li > i {
 }
 ul.footer-menu > li > a {
     color: #e0e4eb;
+    font-size:small;
     text-transform: uppercase;
     text-decoration: none;
     -webkit-transition: color .3s;
@@ -266,9 +262,11 @@ ul.footer-contact > li > i{
 ul.footer-contact > li > span {
     display: inline-block;
     vertical-align: middle;
+    font-size:small;
 }
 ul.footer-contact > li > a{
     color: #F1F1F1;
+    font-size:small;
 }
 /***** Domaine single page style ****/
 
@@ -297,7 +295,62 @@ ul.footer-contact > li > a{
     background: #F17A21;
     margin-right:1em
 }
+.contact-map  {
+    position: relative;
+    padding-bottom: 65.25%;
+    padding-top: 30px;
+    height: 0;
+    overflow: hidden;
+}
+.contact-map iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    max-height:350px;
+}
+
+.responsive-container > iframe,
+.responsive-container > object,
+.responsive-container > embed {
+    position: absolute;
+    max-height:350px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.responsive-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0; overflow: hidden;
+    max-width: 100%;
+}
+.responsive-container iframe, .responsive-container object, .responsive-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.input[type=text]:focus:not([readonly]),
+.input[type=email]:focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]){
+    border-bottom:1px solid #F17A21;
+    box-shadow: 0 1px 0 0 #F17A21;
+}
+.input-field .prefix {
+    margin-bottom:0;
+    margin-left:1em;
+}
 /***** Media queries *****/
+@media screen and (max-width: 1200px) {
+    nav ul a {
+        padding: 0px 5px;
+        font-size: .71rem;
+    }
+}
 @media screen and (max-width: 690px) {
     .in__content > div {
         width:96%;
@@ -310,7 +363,7 @@ ul.footer-contact > li > a{
         position: absolute;
         width: 12px;
         height: 12px;
-        margin-top: -45px;
+        margin-top: -35px;
         border-radius: 50%;
         /* color: #F17A21; */
         background: #F17A21;
@@ -327,5 +380,11 @@ ul.footer-contact > li > a{
     .in__content > div > ul.col-left > li > a{
         margin-right:0em;
         margin-left:2em;
+    }
+}
+@media screen and (max-width: 450px) {
+    .brand-logo > img {
+        width: 300px;
+        height: auto;
     }
 }

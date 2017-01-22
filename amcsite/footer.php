@@ -12,12 +12,21 @@
                   <div class="col s12 l4 center-left">
                         <ul class="footer-menu">
                               <h5>Menu</h5>
-                              <li><i class="fa fa-angle-right" aria-hidden="true"></i> <a href="">Accueil</a></li>
+                            <?php if(!is_front_page()): ?>
+                              <li><i class="fa fa-angle-right" aria-hidden="true"></i> <a href="#home">Accueil</a></li>
                               <li><i class="fa fa-angle-right" aria-hidden="true"></i> <a href="">Qui sommes nous ?</a></li>
-                              <li><i class="fa fa-angle-right" aria-hidden="true"></i> <a href="">Types d'intervention</a></li>
-                              <li><i class="fa fa-angle-right" aria-hidden="true"></i> <a href="">Domaines d'espertise</a></li>
-                              <li><i class="fa fa-angle-right" aria-hidden="true"></i> <a href="">Nos clients</a></li>
+                              <li><i class="fa fa-angle-right" aria-hidden="true"></i> <a href="#type">Types d'intervention</a></li>
+                              <li><i class="fa fa-angle-right" aria-hidden="true"></i> <a href="#domain">Domaines d'expertise</a></li>
+                              <li><i class="fa fa-angle-right" aria-hidden="true"></i> <a href="#reference">Nos clients</a></li>
+                            <?php else: ?>
+                                <li><i class="fa fa-angle-right" aria-hidden="true"></i> <a href="<?= esc_url( home_url() ) ;?>#home">Accueil</a></li>
+                                <li><i class="fa fa-angle-right" aria-hidden="true"></i> <a href="">Qui sommes nous ?</a></li>
+                                <li><i class="fa fa-angle-right" aria-hidden="true"></i> <a href="<?= get_home_url()  ;?>#type">Types d'intervention</a></li>
+                                <li><i class="fa fa-angle-right" aria-hidden="true"></i> <a href="<?= esc_url( home_url() ) ;?>#domain">Domaines d'expertise</a></li>
+                                <li><i class="fa fa-angle-right" aria-hidden="true"></i> <a href="<?= esc_url( home_url() ) ;?>#reference">Nos clients</a></li>
+                            <?php endif ?>
                               <li><i class="fa fa-angle-right" aria-hidden="true"></i> <a href="https://bms.bluekango.com/amc/index.php" target="_blank">Espace abonnes</a></li>
+
                         </ul>
                   </div>
                   <div class="col s12 l4 center-left">
@@ -31,7 +40,12 @@
                   </div>
             </div>
       </div>
+      <div style="padding-top: 15px;padding-right: 20px; height: 50px;opacity: .8;background-color: rgba(34, 100, 155, 1);">
+            <div class="" style="color:white; text-align:right">
+                  &copy; Afrique Management Conseil <?= date('Y'); ?> - Powered by SiSTEPS
+            </div>
 
+      </div>
 </footer>
 
 <?php wp_footer(); ?>

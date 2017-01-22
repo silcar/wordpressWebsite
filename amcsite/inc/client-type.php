@@ -51,6 +51,19 @@ function client() {
 
 }
 add_action( 'init', 'client', 0 );
+function add_client_type_metabox(){
+
+    $screen = 'client';
+
+    add_meta_box(
+        'client_type',
+        __( 'Type d\'entreprise (domaine du client)', 'amc' ),
+        'client_type_metabox_loader',
+        $screen,
+        'normal',
+        'high'
+    );
+}
 function add_client_phone_metabox(){
 
     $screen = 'client';
@@ -90,10 +103,22 @@ function add_client_address_metabox(){
         'high'
     );
 }
+add_action( 'add_meta_boxes', 'add_client_type_metabox');
 add_action( 'add_meta_boxes', 'add_client_phone_metabox');
 add_action( 'add_meta_boxes', 'add_client_email_metabox');
 add_action( 'add_meta_boxes', 'add_client_address_metabox');
 //Functions managing the client customs' metaboxes display in admin section:
+function client_type_metabox_loader( $post ){
+
+    wp_nonce_field( 'client_type_metabox_loader', 'client_type_metabox_loader_nonce' );
+
+    $client_type = get_post_meta ( $post -> ID, 'client_type', true ) ;
+    echo '<label for="input_client_type"><br/>'.
+        _e( "Saisir type d'entreprise:", 'amc' )
+        .'</label> '.
+        '<input type="text" id="input_client_type" name="client_type" value="' . esc_attr( $client_type ) . '" size="50" />';
+
+}
 function client_phone_metabox_loader( $post ){
 
     wp_nonce_field( 'client_phone_metabox_loader', 'client_phone_metabox_loader_nonce' );
@@ -128,6 +153,50 @@ function client_address_metabox_loader( $post ){
 
 }
 //Function managing the client custom metabox field saving process to the wordpress database:
+function client_type_metabox_data_saver( $post_id ){
+
+    // Check if our nonce is set.
+    if ( ! isset( $_POST['client_type_metabox_loader_nonce'] ) ):
+        return $post_id;
+    endif;
+
+    $nonce = $_POST['client_type_metabox_loader_nonce'];
+
+    // Verify that the nonce is valid.
+    if ( ! wp_verify_nonce( $nonce, 'client_type_metabox_loader' ) ):
+        return $post_id;
+    endif;
+
+    // If this is an autosave, our form has not been submitted, so we don't want to do anything.
+    if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ):
+        return $post_id;
+    endif;
+
+    // Check the user's permissions.
+    if ( 'client' == $_POST['post_type'] ):
+
+        if ( ! current_user_can( 'edit_page', $post_id ) ):
+            return $post_id;
+
+        else :
+
+            if ( ! current_user_can( 'edit_post', $post_id ) ):
+                return $post_id;
+            endif;
+
+        endif;
+
+    endif;
+
+    /* OK, its safe for us to save the data now. */
+
+    // Sanitize user input.
+    $mydata = sanitize_text_field( $_POST['client_type'] );
+
+    // Update the meta field in the database.
+    update_post_meta( $post_id, 'client_type', $mydata );
+
+}
 function client_phone_metabox_data_saver( $post_id ){
 
     // Check if our nonce is set.
@@ -260,6 +329,7 @@ function client_address_metabox_data_saver( $post_id ){
     update_post_meta( $post_id, 'client_address', $mydata );
 
 }
+add_action( 'save_post', 'client_type_metabox_data_saver' );
 add_action( 'save_post', 'client_phone_metabox_data_saver' );
 add_action( 'save_post', 'client_email_metabox_data_saver' );
 add_action( 'save_post', 'client_address_metabox_data_saver' );
