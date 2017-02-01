@@ -122,24 +122,28 @@ function reference_client_metabox_loader( $post ){
     $reference_client = get_post_meta ( $post -> ID, 'reference_client', true ) ;
 
     $clients = new WP_Query( $args );
-    echo '<select name="reference_client" id="reference_client" >';
+    echo '<div class="input-field col s12"><select name="reference_client" id="reference_client" class="icons" >';
     echo '<option value="">Sélectionner un client</option>';
     if ( $clients->have_posts() ) {
 
         while ($clients->have_posts()) {
             $clients->the_post();
+            $thumb_id = get_post_thumbnail_id();
+            $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail-size', true);
+            $thumb_url = $thumb_url_array[0];
             $text='';
             $c_id = get_the_ID();
             if($c_id == $reference_client) {
                 $text = "selected";
             }
-            echo '<option value="'. get_the_ID() .'" '. $text .'>';
+            echo '<option class="left circle" data-icon="'. $thumb_url . '" value="'. get_the_ID() .'" '. $text .'>';
+
             echo ucfirst(strtolower(get_the_title())) ;
             echo '</option>';
         }
     }// end if
     echo '<option value="">Créer un nouveau client</option>';
-    echo '</select>';
+    echo '</select></div>';
 }
 function reference_intervention_metabox_loader( $post ){
 
@@ -161,11 +165,14 @@ function reference_intervention_metabox_loader( $post ){
         while ($clients->have_posts()) {
             $clients->the_post();
             $c_id = get_the_ID();
+            $thumb_id = get_post_thumbnail_id();
+            $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail-size', true);
+            $thumb_url = $thumb_url_array[0];
             $text = '';
             if($c_id == $reference_client) {
                 $text = "selected";
             }
-            echo '<option value="'. get_the_ID() .'"' . $text .' >';
+            echo '<option class="left circle" data-icon="'. $thumb_url . '" value="'. get_the_ID() .'"' . $text .' >';
             echo ucfirst(strtolower(get_the_title())) ;
             echo '</option>';
         }
@@ -187,24 +194,27 @@ function reference_expertise_metabox_loader( $post ){
     $reference_client = get_post_meta ( $post -> ID, 'reference_expertise', true ) ;
 
     $domaines = new WP_Query( $args );
-    echo '<select name="reference_expertise" id="reference_expertise" >';
-    echo '<option value="">Sélectionner un domaine d\'expertise</option>';
+    echo '<div class="input-field col s12"><select name="reference_expertise" id="reference_expertise" >';
+    echo '<option value="">Sélectionner un domaine d\'expertise</option><optgroup label="">';
     if ( $domaines->have_posts() ) {
 
         while ($domaines->have_posts()) {
             $domaines->the_post();
             $c_id = get_the_ID();
+            $thumb_id = get_post_thumbnail_id();
+            $thumb_url_array = wp_get_attachment_image_src($thumb_id, 'thumbnail-size', true);
+            $thumb_url = $thumb_url_array[0];
             $text = '';
             if($c_id == $reference_client) {
                 $text = "selected";
             }
-            echo '<option value="'. get_the_ID() .'"' . $text . '>';
+            echo '<option class="left circle" data-icon="'. $thumb_url . '" value="'. get_the_ID() .'"' . $text . '>';
             echo ucfirst(strtolower(get_the_title())) ;
             echo '</option>';
-        }
+        }//end while
     }// end if
-    echo '<option value="">Créer un nouveau domaine d\'expertise</option>';
-    echo '</select>';
+    echo '</optgroup><optgroup label="Si le domaine d\'expertise n\'existe pas sur la liste, cliquez si dessous pour le créer"><option value="">Créer un nouveau domaine d\'expertise</option></optgroup>';
+    echo '</select></div>';
 }
 function reference_date_metabox_loader( $post ){
 
