@@ -1,7 +1,7 @@
 jQuery(document).ready(function($) {
     $(document).ready(function(){
         $('.scrollspy').scrollSpy({
-            scrollOffset: 75
+            scrollOffset: 50
         });
     });
 
