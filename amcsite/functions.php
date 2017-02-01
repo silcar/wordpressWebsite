@@ -75,7 +75,7 @@ wp_enqueue_style ('bxslider_css', get_template_directory_uri() . '/assets/js/bxs
 wp_enqueue_style ('materialize_ccs', get_template_directory_uri() . '/assets/css/materialize.min.css');
    wp_enqueue_style ('font-awesome', get_template_directory_uri() . '/assets/css/font-awesome/css/font-awesome.min.css');
    wp_enqueue_style ('animate', get_template_directory_uri() . '/assets/css/animate.css');
-   wp_enqueue_style ('main_style', get_template_directory_uri() . '/style.css?v=2.536');
+   wp_enqueue_style ('main_style', get_template_directory_uri() . '/style.css?v=2.542');
 
 }
 add_action('wp_enqueue_scripts', 'theme_styles');
@@ -102,10 +102,11 @@ function add_admin_scripts( $hook ) {
     global $post;
 
     if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
-        if ( 'domain' === $post->post_type  || 'expertise' === $post->post_type) {
+        if ( 'reference' === $post->post_type || 'domain' === $post->post_type  || 'expertise' === $post->post_type) {
             wp_enqueue_style( 'my-materialize-css', get_template_directory_uri(). '/assets/css/materialize.min.css' );
+            wp_enqueue_style( 'my-admin-style', get_template_directory_uri(). '/assets/css/admin-style.css?v=1.312' );
             wp_enqueue_script(  'my-materialize-js', get_template_directory_uri().'/assets/js/materialize.min.js' );
-            wp_enqueue_script(  'my-admin-script', get_template_directory_uri().'/assets/js/admin-script.js' );
+            wp_enqueue_script(  'my-admin-script', get_template_directory_uri().'/assets/js/admin-script.js?v=1.23' );
         }
     }
 }

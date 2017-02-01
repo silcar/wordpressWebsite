@@ -74,6 +74,19 @@ nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
     width:375px;
     height:auto;
 }
+.dropdown-content li {
+    padding-top:10px;
+}
+.dropdown-content li>a, .dropdown-content li>span {
+    font-size: .83em;
+    color: #225d89;
+    display: block;
+    line-height: 10px;
+    padding: 10px 10px;
+}
+.dropdown-content li:hover, .dropdown-content li.active, .dropdown-content li.selected{
+    background-color: #F17A21;
+}
 /************ Customize Bxslider ***********/
 .bx-viewport{
     -webkit-box-shadow: none !important;
@@ -384,7 +397,7 @@ textarea.materialize-textarea:focus:not([readonly]){
 }
 @media screen and (max-width: 450px) {
     .brand-logo > img {
-        width: 300px;
+        width: 250px;
         height: auto;
     }
 }

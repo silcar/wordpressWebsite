@@ -31,12 +31,12 @@
             <?php $type = get_post( $id ); ?>
             <?php $uri = get_the_post_thumbnail_url( $type, $size = 'post-thumbnail' ); ?>
             <?php if($type->post_content): ?>
-                <div class="col s6 m3" style="position:relative;">
+                <div class="col s6 m3" style="position:relative; margin-bottom:.8em; height:243px">
                     <a href="<?= the_permalink($id); ?>" style="position: absolute; width: 100%; height:100%; left:0; top:0; display: block;"></a>
                     <?php if($uri): ?>
                         <img src=" <?=$uri ?>" alt="" style="display: block;width:50px; height:auto; margin:0 auto">
                     <?php endif; ?>
-                    <h3 class="title card-header" style=" margin-top: 5px; text-align: center; font-size: 1.15rem;font-weight: 600;">
+                    <h3 class="title card-header" style=" margin-top: 5px; text-align: center; font-size: 1.15rem;font-weight: 600;min-height: 36px;">
                         <?= $type->post_title; ?>
                     </h3>
                     <div class="content">

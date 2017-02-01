@@ -1,0 +1,13 @@
+.dropdown-content li>a, .dropdown-content li>span {
+    color: #225D89;
+}
+.dropdown-content li.optgroup>span {
+    color: #F17A21;
+}
+.picker__weekday-display {
+    background-color: #f17a21;
+}
+.picker__date-display {
+    background-color: #F17A21;
+    color:#225D89;
+}
