@@ -41,7 +41,8 @@
                         <ul id='dropdown1' class='dropdown-content'>
                             <li><a href="#!">Présentation</a></li>
                             <li><a href="#!">Equipe</a></li>
-                            <li><a href="#!">Nos engagements</a></li>
+                            <li><a href="#!">Nos Engagements</a></li>
+                            <li><a href="/nous-contacter">Nous Contacter</a></li>
                         </ul>
                     </li>
                     <li id="menu-item-6" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6"><a href="<?= esc_url( home_url() ) ;?>#type"><span>Types d&rsquo;intervention</span></a></li>
@@ -63,7 +64,8 @@
                             <ul id='dropdown1' class='dropdown-content'>
                                 <li><a href="#!">Présentation</a></li>
                                 <li><a href="#!">Equipe</a></li>
-                                <li><a href="#!">Nos engagements</a></li>
+                                <li><a href="#!">Nos Engagements</a></li>
+                                <li><a href="nous-contacter">Nous Contacter</a></li>
                             </ul>
                         <li id="menu-item-6" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6"><a href="#type"><span>Types d&rsquo;intervention</span></a></li>
                         <li id="menu-item-7" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7"><a href="#domain"><span>Domaines d&rsquo;expertise</span></a></li>
