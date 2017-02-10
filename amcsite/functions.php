@@ -102,7 +102,7 @@ function add_admin_scripts( $hook ) {
     global $post;
 
     if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
-        if ( 'reference' === $post->post_type || 'domain' === $post->post_type  || 'expertise' === $post->post_type) {
+        if ( 'equipe' === $post->post_type || 'reference' === $post->post_type || 'domain' === $post->post_type  || 'expertise' === $post->post_type) {
             wp_enqueue_style( 'my-materialize-css', get_template_directory_uri(). '/assets/css/materialize.min.css' );
             wp_enqueue_style( 'my-admin-style', get_template_directory_uri(). '/assets/css/admin-style.css?v=1.312' );
             wp_enqueue_script(  'my-materialize-js', get_template_directory_uri().'/assets/js/materialize.min.js' );
@@ -138,6 +138,26 @@ function theme_settings(){
 }
 
 add_action('after_setup_theme', 'theme_settings');
+function get_custom_about_template($single_template) {
+    global $post;
+    if ( in_category( 'qui-sommes-nous' )) {
+        $single_template = dirname( __FILE__ ) . '/single-qui-sommes-nous.php';
+    }
+    return $single_template;
+}
+add_filter( "single_template", "get_custom_about_template" ) ;
+//change title when post type is equipe
+function wpb_change_title_text( $title ){
+    $screen = get_current_screen();
+
+    if  ( 'equipe' == $screen->post_type ) {
+        $title = 'Saisir prénom et nom du membre';
+    }
+
+    return $title;
+}
+
+add_filter( 'enter_title_here', 'wpb_change_title_text' );
 function shorten_string($string, $wordsreturned)
 {
     $retval = $string;  //  Just in case of a problem
@@ -168,3 +188,4 @@ require 'inc/news-type.php';
 require 'inc/intervention-type.php';
 require 'inc/domain-type.php';
 require 'inc/reference-type.php';
+require 'inc/equipe-type.php';

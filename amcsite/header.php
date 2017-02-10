@@ -39,9 +39,9 @@
                     <li id="menu-item-5" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5"><a class='dropdown-button' href='#' data-activates='dropdown1'><span>Qui sommes nous ?</span></a>
                         <!-- Dropdown Structure -->
                         <ul id='dropdown1' class='dropdown-content'>
-                            <li><a href="#!">Présentation</a></li>
-                            <li><a href="#!">Equipe</a></li>
-                            <li><a href="#!">Nos Engagements</a></li>
+                            <li><a href="<?php the_permalink(58); ?>">Présentation</a></li>
+                            <li><a href="<?php the_permalink(62); ?>">Equipe</a></li>
+                            <li><a href="<?php the_permalink(60); ?>"">Nos Engagements</a></li>
                             <li><a href="/nous-contacter">Nous Contacter</a></li>
                         </ul>
                     </li>
@@ -62,9 +62,9 @@
                         <li id="menu-item-5" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5"><a class='dropdown-button' href='#' data-activates='dropdown1'><span>Qui sommes nous ?</span></a>
                             <!-- Dropdown Structure -->
                             <ul id='dropdown1' class='dropdown-content'>
-                                <li><a href="#!">Présentation</a></li>
-                                <li><a href="#!">Equipe</a></li>
-                                <li><a href="#!">Nos Engagements</a></li>
+                                <li><a href="<?php the_permalink(58); ?>">Présentation</a></li>
+                                <li><a href="<?php the_permalink(62); ?>">Equipe</a></li>
+                                <li><a href="<?php the_permalink(60); ?>">Nos Engagements</a></li>
                                 <li><a href="nous-contacter">Nous Contacter</a></li>
                             </ul>
                         <li id="menu-item-6" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6"><a href="#type"><span>Types d&rsquo;intervention</span></a></li>
